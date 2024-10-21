@@ -1,54 +1,47 @@
-# Astro Starter Kit: Basics
+# astro-headless-wp-example
 
-```sh
-npm create astro@latest -- --template basics
+An example of an Astro site with a super simple connection to a local WordPress site using GraphQL.
+
+### Requirements
+
+- node.js
+- npm or yarn to install the dependencies
+- A local WordPress site
+
+### Note
+
+For Windows/WSL2 users: if your local WordPress site runs on Windows and your Astro dev server on WSL2 then you will need to do one of the following:
+
+- Enable [Mirrored mode networking](https://learn.microsoft.com/en-us/windows/wsl/networking#mirrored-mode-networking) by adding the following line `networkingMode=mirrored` to your `.wslconfig` file.
+
+Or
+
+- Follow the instructions on [Microsoft Learn](https://learn.microsoft.com/en-us/windows/wsl/networking) to use the Windows host IP.
+
+## Instructions
+
+### WordPress
+
+1. Create a new local WordPress site, or use an existing one.
+2. Install the [WPGraphQL plug-in](https://wordpress.org/plugins/wp-graphql/) and activate it.
+
+### Astro
+
+1. Clone this repository
+2. Navigate to `./src/graphql/` and open `wpQuery.ts`.
+3. Change the target URL of the fetch on `line:8` to your local sites URL/graphql.
+
+### Both
+
+1. Use by importing at the top of your component/page: `import { wpquery } from "../graphql/wpQuery";`
+2. Then you can use the `wpquery` function to fetch data from your local WordPress site:
+```js
+const data = await wpquery({
+    query: `
+        [YOUR QUERY HERE]
+    `,
+});
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+> **Tip:** You can use the Query Composer in the GraphiQL IDE on your WordPress site to quickly create queries and preview their output.
+> 
+> It can be accessed by clicking on the GraphQL > GraphiQL IDE on the left-hand sidebar in the WordPress dashboard, or going to this URL on your local `/wp-admin/admin.php?page=graphiql-ide`.
