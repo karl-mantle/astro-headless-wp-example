@@ -4,8 +4,7 @@ An example of an Astro site with a super simple connection to a local WordPress 
 
 ### Requirements
 
-- node.js
-- npm or yarn to install the dependencies
+- `npm` or `yarn` to install Astro dependencies
 - A local WordPress site
 
 ### Note
