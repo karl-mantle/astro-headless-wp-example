@@ -4,8 +4,8 @@ interface gqlParams {
 }
 
 export async function wpquery({ query, variables = {} }: gqlParams) {
-	// change this URL to your local Wordpress domain/graphql
-	const res = await fetch('http://wpgraphql-blog-test.local/graphql', {
+	// create .env with WP_URL=yourSiteUrl/graphql
+	const res = await fetch(import.meta.env.WP_URL, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
